@@ -26,8 +26,10 @@ app.get('/api/hello', function (req, res) {
 
 //The main api endpoint..
 app.get("/api/whoami", (req, res) => {
-  
-})
+  console.log(req.ip.split(":"))
+  const ip = req.ip.split(":");
+  res.json({ ipaddress: ip[ip.length-1], language: req.headers["accept-language"], software: req.headers["user-agent"] });
+});
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT || 3000, function () {
